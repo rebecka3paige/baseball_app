@@ -11,10 +11,8 @@ async def get_years():
     """Return a sorted list of all years available in the teams table."""
     with get_session() as session:
         statement = select(Teams.yearID).distinct().order_by(Teams.yearID)
-        results = session.exec(statement).all()
+        years = session.exec(statement).scalars().all()
 
-    # SQLModel returns a list of tuples in this case; extract the year values
-    years = [row[0] for row in results]
     return {"years": years}
 
 
