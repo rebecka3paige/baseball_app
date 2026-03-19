@@ -1,6 +1,6 @@
 from sqlmodel import SQLModel, Field, Relationship, ForeignKeyConstraint
 from typing import Optional
-from sqlalchemy import Column, Integer, Float, Text
+from sqlalchemy import Column, Integer, Float, Text, and_
 
 
 class People(SQLModel, table=True):
@@ -88,8 +88,6 @@ class Teams(SQLModel, table=True):
     teamIDlahman45: Optional[str] = Field(default=None)
     teamIDretro: Optional[str] = Field(default=None)
 
-    # Relationships
-    batting_records: list["Batting"] = Relationship(back_populates="team")
 
 
 class Batting(SQLModel, table=True):
@@ -98,7 +96,7 @@ class Batting(SQLModel, table=True):
     playerID: str = Field(primary_key=True, foreign_key="people.playerID")
     yearID: int = Field(primary_key=True)
     stint: int = Field(primary_key=True)
-    teamID: str = Field(foreign_key="teams.teamID")
+    teamID: str
     lgID: Optional[str] = Field(default=None)
     G: Optional[int] = Field(default=None)
     AB: Optional[int] = Field(default=None)
@@ -125,7 +123,6 @@ class Batting(SQLModel, table=True):
 
     # Relationships
     player: People = Relationship(back_populates="batting_records")
-    team: Teams = Relationship(back_populates="batting_records")
 
 
 # Database engine and session configuration

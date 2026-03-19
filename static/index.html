@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baseball History</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="page-header">
+    <div class="logo">
+      <span class="ball">⚾</span>
+      <h1>Baseball History</h1>
+    </div>
+    <p class="subtitle">Explore seasons from the teams dataset</p>
+  </header>
+
+  <main class="content">
+    <section class="card">
+      <h2>Select a Year</h2>
+      <div class="form-row">
+        <label for="yearSelect">Year</label>
+        <select id="yearSelect" disabled>
+          <option>Loading years…</option>
+        </select>
+      </div>
+      <p id="selectedYear" class="selected"></p>
+
+      <section id="teamsSection" class="teams">
+        <h3>Teams</h3>
+        <ul id="teamList" class="team-list"></ul>
+        <p id="teamsError" class="error" hidden></p>
+      </section>
+
+      <p id="error" class="error" hidden></p>
+    </section>
+
+    <footer class="footer">
+      Powered by FastAPI + SQLite
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
